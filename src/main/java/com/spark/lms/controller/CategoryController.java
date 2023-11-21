@@ -3,6 +3,8 @@ package com.spark.lms.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +26,10 @@ public class CategoryController {
 	@RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
 	public String showCategoriesPage(Model model) {
 		model.addAttribute("categories", categoryService.getAll());
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		boolean isAdmin  = loggedInUser.getAuthorities().stream()
+        .anyMatch(authority -> "Admin".equals(authority.getAuthority()));
+		model.addAttribute("isAdmin", isAdmin);
 		return "/category/list";
 	}
 	

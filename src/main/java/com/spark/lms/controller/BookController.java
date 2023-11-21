@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +39,10 @@ public class BookController {
 	@RequestMapping(value = {"", "/list"}, method = RequestMethod.GET)
 	public String showBooksPage(Model model) {
 		model.addAttribute("books", bookService.getAll());
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		boolean isAdmin  = loggedInUser.getAuthorities().stream()
+        .anyMatch(authority -> "Admin".equals(authority.getAuthority()));
+		model.addAttribute("isAdmin", isAdmin);
 		return "/book/list";
 	}
 	

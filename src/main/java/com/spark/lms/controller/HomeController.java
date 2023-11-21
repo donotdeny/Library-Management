@@ -20,7 +20,9 @@ public class HomeController {
 	public String homePage(Model model) {
 		model.addAttribute("topTiles", homeService.getTopTilesMap());
 		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-		model.addAttribute("userRole", loggedInUser.getAuthorities());
+		boolean isAdmin  = loggedInUser.getAuthorities().stream()
+        .anyMatch(authority -> "Admin".equals(authority.getAuthority()));
+		model.addAttribute("isAdmin", isAdmin);
 		return "home";
 	}	
 	
