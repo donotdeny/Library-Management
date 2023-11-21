@@ -4,14 +4,20 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.spark.lms.common.Constants;
 import com.spark.lms.model.Member;
+import com.spark.lms.model.User;
 import com.spark.lms.repository.MemberRepository;
+import com.spark.lms.repository.UserRepository;
 
 @Service
 public class MemberService {
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private MemberRepository memberRepository;
@@ -41,6 +47,9 @@ public class MemberService {
 	
 	public Member addNew(Member member) {
 		member.setJoiningDate( new Date() );
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		User user = userRepository.findByUsername(loggedInUser.getName());
+		member.setBranchId(user.getBranchId());
 		return memberRepository.save( member );
 	}
 	

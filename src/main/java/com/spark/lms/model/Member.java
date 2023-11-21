@@ -62,6 +62,9 @@ public class Member implements Serializable {
 	@Column(name = "email")
 	private String email;
 	
+	@Column(name = "branch_id")
+	private Integer branch_id;
+
 	public Member(@NotNull String type, @NotNull String firstName, @NotNull String middleName, @NotNull String lastName,
 			@NotNull String gender, @NotNull Date dateOfBirth, @NotNull Date joiningDate) {
 		super();
@@ -156,6 +159,13 @@ public class Member implements Serializable {
 		this.email = email;
 	}
 	
-	
+	public Integer getBranchId() {
+		return branch_id;
+	}
+
+	public void setBranchId(Integer branch_id) {
+		this.branch_id = branch_id;
+	}
+
 	
 }
