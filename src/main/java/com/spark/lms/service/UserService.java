@@ -56,4 +56,9 @@ public class UserService {
 	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
+
+	public Long countByBranchId(Integer id)
+	{
+		return userRepository.countByBranchId(id);
+	}
 }

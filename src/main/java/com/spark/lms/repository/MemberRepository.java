@@ -11,4 +11,5 @@ import com.spark.lms.model.Member;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	public List<Member> findAllByOrderByFirstNameAscMiddleNameAscLastNameAsc();
 	public Long countByType(String type);
+	public Long countByBranchId(Integer branchId);
 }

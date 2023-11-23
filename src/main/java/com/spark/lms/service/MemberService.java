@@ -69,4 +69,7 @@ public class MemberService {
 		return issueService.getCountByMember(member) > 0;
 	}
 	
+	public Long countByBranchId(Integer num) {
+		return memberRepository.countByBranchId(num);
+	}
 }

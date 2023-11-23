@@ -63,7 +63,7 @@ public class Member implements Serializable {
 	private String email;
 	
 	@Column(name = "branch_id")
-	private Integer branch_id;
+	private Integer branchId;
 
 	public Member(@NotNull String type, @NotNull String firstName, @NotNull String middleName, @NotNull String lastName,
 			@NotNull String gender, @NotNull Date dateOfBirth, @NotNull Date joiningDate) {
@@ -160,11 +160,11 @@ public class Member implements Serializable {
 	}
 	
 	public Integer getBranchId() {
-		return branch_id;
+		return branchId;
 	}
 
 	public void setBranchId(Integer branch_id) {
-		this.branch_id = branch_id;
+		this.branchId = branch_id;
 	}
 
 	

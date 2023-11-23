@@ -63,7 +63,7 @@ public class User implements Serializable {
 	private Date lastModifiedDate;
 
 	@Column(name = "branch_id")
-	private Integer branch_id;
+	private Integer branchId;
 
 	public Long getId() {
 		return id;
@@ -129,11 +129,11 @@ public class User implements Serializable {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 	public Integer getBranchId() {
-		return branch_id;
+		return branchId;
 	}
 
 	public void setBranchId(Integer branch_id) {
-		this.branch_id = branch_id;
+		this.branchId = branch_id;
 	}
 	
 }

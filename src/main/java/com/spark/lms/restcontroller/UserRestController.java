@@ -1,30 +1,21 @@
 package com.spark.lms.restcontroller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spark.lms.model.Member;
-import com.spark.lms.service.MemberService;
+import com.spark.lms.service.UserService;
 
 @RestController
-@RequestMapping(value = "/rest/member")
-public class MemberRestController {
+@RequestMapping(value = "/rest/user")
+public class UserRestController {
+    @Autowired
+	private UserService userService;
 
-	@Autowired
-	private MemberService memberService;
-	
-	@GetMapping(value = {"/", "/list"})
-	public List<Member> all() {
-		return memberService.getAll();
-	}
-	
-	@GetMapping(value = "/{id}/member")
+    @GetMapping(value = "/{id}/user")
 	public Long getMemberByBranch(@PathVariable(name = "id") Integer id) {
-		return memberService.countByBranchId(id);
+		return userService.countByBranchId(id);
 	}
 }
